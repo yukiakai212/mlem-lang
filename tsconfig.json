@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",     
+    "moduleResolution": "nodenext", 
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+	"forceConsistentCasingInFileNames": true,
+    "strict": true,
+	"strictPropertyInitialization": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
