@@ -1,0 +1,30 @@
+mlick "lib.mlem";
+mlem x:i = 10;
+mlem y:f = 2.5;
+mlem msg:s = "hello";
+MLEM HI = "hello";
+
+//mlem
+func add(a, b) {
+  return a + b;
+}
+//mlem
+
+func average(a, b) {
+  mlem s = a + b;
+  return s / 2;
+}
+print(fuck());
+print (x);
+//print (y)
+
+
+mlem i = 0;
+while (i < 3) {
+  print (i);
+  i = i + 1;
+}
+
+for (mlem j = 0; j < 3; j = j + 1) {
+  print (j);
+}

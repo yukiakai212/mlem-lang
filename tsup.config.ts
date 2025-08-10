@@ -15,5 +15,5 @@ export default defineConfig({
   target: 'es2022',
   drop: 'console',
   define: {},
-  external: [],
+  external: ['esbuild'],
 });

@@ -1,0 +1,1 @@
+function l(){return"fuck you"}var n=10;console.log(l());console.log(n);var o=0;for(;o<3;)console.log(o),o=o+1;for(let e=0;e<3;e=e+1)console.log(e);

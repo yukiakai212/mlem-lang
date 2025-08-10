@@ -1,25 +1,16 @@
 import { describe, it, expect, vi, beforeEach, test } from 'vitest';
-import module from 'node:module';
 import path from 'node:path';
+import fs from 'node:fs';
 
-import * as vanipathCore from '../src/index.js';
-import * as vanipathESM from '../dist/index.js';
-const require = module.createRequire(import.meta.url);
-const vanipathCJS = require('../dist/index.cjs');
-
-describe.each([
-  ['Core', vanipathCore],
-  ['ESM', vanipathESM],
-  ['CJS', vanipathCJS],
-])('vanipath with (%s)', (name, vanipath) => {
-  it('should return this file path', () => {
-    expect(vanipath.filename()).toBe(import.meta.filename);
+import { Compile, runFile } from '../src/index.js';
+describe('Mlem build', () => {
+  it('should return correct source file', async () => {
+    const source = fs.readFileSync(await Compile('mlem/test.mlem'), 'utf8');
+    const tested = fs.readFileSync('mlem/test.mlemjs', 'utf8');
+    expect(source.trim()).toBe(tested.trim());
   });
-  it('should return this folder path', () => {
-    expect(vanipath.dirname()).toBe(import.meta.dirname);
+  it('should exec without error', async () => {
+    const source = await Compile('mlem/test.mlem');
+    expect(() => runFile(source)).not.toThrow();
   });
-});
-test('Module should work, not throw Eror', async () => {
-  await import('../index.js');
-  expect(true).toBe(true);
 });

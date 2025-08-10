@@ -1,27 +1,4 @@
-//bruh!
-import { dirname } from './src/index.js';
-
-const failedMessage = 'FAILED: ';
-if (dirname() !== import.meta.dirname) throw new Error(failedMessage + dirname());
-
-console.log('Passed non function');
-function normal() {
-  if (dirname() !== import.meta.dirname) throw new Error(failedMessage + dirname());
-  console.log('Passed function');
+const x = 10;
+for (let i = 0; i < 10; i++) {
+  console.log('mlem' + i);
 }
-normal();
-
-const arrow = () => {
-  if (dirname() !== import.meta.dirname) throw new Error(failedMessage + dirname());
-  console.log('Passed arrow function');
-};
-arrow();
-setTimeout(() => {
-  if (dirname() !== import.meta.dirname) throw new Error(failedMessage + dirname());
-  console.log('Passed calback function');
-}, 1);
-
-(() => {
-  if (dirname() !== import.meta.dirname) throw new Error(failedMessage + dirname());
-  console.log('Passed anonymous function');
-})();

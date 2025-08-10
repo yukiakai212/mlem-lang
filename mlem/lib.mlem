@@ -1,0 +1,4 @@
+func fuck()
+{
+	return "fuck you"
+}
