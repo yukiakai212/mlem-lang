@@ -1,5 +1,7 @@
 # MLEM (Modern Language for Every Machine)
 
+[![Build Status][github-build-url]][github-url]
+
 **Mlem Lang** (Modern Language for Every Machine) is an **experimental programming language** designed to explore new ideas in syntax and compilation.  
 It is **not** intended to replace or compete with production-ready languages.
 
@@ -82,3 +84,7 @@ for (mlem j = 0; j < 3; j = j + 1) {
 MIT License © 2025 [Yuki Akai](https://github.com/yukiakai212/) — For research purposes only.
 No warranty, no guarantee of stability.
 
+---
+
+[github-build-url]: https://github.com/yukiakai212/mlem-lang/actions/workflows/build.yml/badge.svg
+[github-url]: https://github.com/yukiakai212/mlem-lang/
