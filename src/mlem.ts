@@ -79,7 +79,7 @@ function importFile(source: string, fileSource: string, files: string[] = []): s
     importMap.set(match[0], importSource);
   }
   importMap.forEach((v, k) => {
-    source = source.replace(k, v + '\n');
+    source = source.replaceAll(k, v + '\n');
   });
   return source;
 }
