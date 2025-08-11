@@ -1,4 +1,3 @@
-const x = 10;
-for (let i = 0; i < 10; i++) {
-  console.log('mlem' + i);
-}
+import { Compile, runFile } from './src/index.js';
+const file = await Compile('./mlem/test.mlem');
+runFile(file);

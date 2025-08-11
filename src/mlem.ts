@@ -19,7 +19,7 @@ function lexer(input) {
     else if (/^\d+\.\d+$/.test(t)) tokens.push({ type: 'FLOAT', value: t });
     else if (/^\d+$/.test(t)) tokens.push({ type: 'INT', value: t });
     else if (/^:[s|i|f]$/.test(t)) tokens.push({ type: 'TYPE', value: t.slice(1) });
-    else if (/^"(?:[^"\\]|\\.)*"$/.test(t)) tokens.push({ type: 'STRING', value: JSON.parse(t) });
+    else if (/^"(?:[^"\\]|\\.)*"$/.test(t)) tokens.push({ type: 'STRING', value: t });
     else if (/^[A-Za-z_]\w*$/.test(t)) tokens.push({ type: 'IDENT', value: t });
     else tokens.push({ type: t });
   }
@@ -44,7 +44,7 @@ function Parser(tokens) {
     else if (tk.type === 'RETURN') body.push('return ');
     else if (tk.type === 'WHILE') body.push('while ');
     else if (tk.type === 'FOR') body.push('for ');
-    else if (tk.type === 'STRING') body.push(`"${tk.value}"`);
+    else if (tk.type === 'STRING') body.push(tk.value);
     else if (tk.type === 'TYPE') {
       if (tk.value === 's') body.push(':string');
       else if (tk.value === 'f' || tk.value === 'i') body.push(':number');
@@ -69,14 +69,18 @@ function Reader(sourceFile: string): string {
 function importFile(source: string, fileSource: string, files: string[] = []): string {
   const regex = /mlick\s+"([^"]+)"/g;
   let match;
+  const importMap: Map<string, string> = new Map();
   while ((match = regex.exec(source)) !== null) {
     const file = match[1];
     if (!file || files.includes(file)) continue;
     const code = fs.readFileSync(path.resolve(path.dirname(fileSource), file), 'utf8');
     files.push(file);
-    source = source.replaceAll(match[0], code + '\n');
-    return importFile(source, file, files);
+    const importSource = importFile(code, file, files);
+    importMap.set(match[0], importSource);
   }
+  importMap.forEach((v, k) => {
+    source = source.replace(k, v + '\n');
+  });
   return source;
 }
 
