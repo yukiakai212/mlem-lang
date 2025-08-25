@@ -61,7 +61,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "porffor": "^0.59.8",
+    "porffor": "^0.60.8",
     "randomstring": "^1.3.1",
     "vanipath": "^1.0.7",
     "wabt": "^1.0.37"
